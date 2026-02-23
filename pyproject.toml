@@ -15,7 +15,7 @@ line-length = 79
 target-version = ["py313"]
 # Odoo зазвичай використовує одинарні лапки для рядків,
 # але black за замовчуванням ставить подвійні.
-# skip-string-normalization = true (якщо хочеш залишити як є)
+# skip-string-normalization = true
 exclude = '''
 /(
     \.git
