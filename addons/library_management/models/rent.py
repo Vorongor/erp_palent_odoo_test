@@ -1,4 +1,4 @@
-from odoo import models, fields, api
+from odoo import api, fields, models
 from odoo.exceptions import ValidationError
 
 
@@ -7,6 +7,7 @@ class LibraryRent(models.Model):
     Модель для реєстрації фактів оренди книг.
     Встановлює зв'язки між книгами та партнерами (клієнтами).
     """
+
     _name = "library.rent"
     _description = "Book Rent"
 
@@ -18,7 +19,7 @@ class LibraryRent(models.Model):
     rent_date = fields.Date(
         string="Дата видачі",
         default=fields.Date.context_today,  # Встановлює поточну дату сервера
-        readonly=True
+        readonly=True,
     )
     return_date = fields.Date(string="Return date")
 
@@ -65,7 +66,7 @@ class LibraryRent(models.Model):
         """
         # Викликаємо базовий метод super() для взаємодії з БД
         res = super(LibraryRent, self).write(vals)
-        if 'return_date' in vals and vals['return_date']:
+        if "return_date" in vals and vals["return_date"]:
             for record in self:
                 record.book_id.is_available = True
         return res

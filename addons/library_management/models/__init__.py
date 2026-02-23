@@ -1,2 +1,1 @@
-from . import book
-from . import rent
+from . import book, rent

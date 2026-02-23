@@ -1,11 +1,13 @@
-from odoo import models, fields
+from odoo import fields, models
+
 
 class LibraryBook(models.Model):
     """
-        Основна модель для зберігання інформації про книги.
-        Використовується стандартний клас models.Model
-        для правильного зберігання в БД.
+    Основна модель для зберігання інформації про книги.
+    Використовується стандартний клас models.Model
+    для правильного зберігання в БД.
     """
+
     _name = "library.book"
     _description = "Library Book"
 

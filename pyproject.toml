@@ -1,7 +1,50 @@
 [project]
 name = "erp-planet-odoo-test"
 version = "0.1.0"
-description = "Add your description here"
+description = "Тестове завдання для Python розробника (Odoo)"
 readme = "README.md"
 requires-python = ">=3.13"
-dependencies = []
+dependencies = [
+    "black>=26.1.0",
+    "flake8>=7.3.0",
+    "isort>=5.13.0",
+]
+
+[tool.black]
+line-length = 79
+target-version = ["py313"]
+# Odoo зазвичай використовує одинарні лапки для рядків,
+# але black за замовчуванням ставить подвійні.
+# skip-string-normalization = true (якщо хочеш залишити як є)
+exclude = '''
+/(
+    \.git
+  | \.venv
+  | __pycache__
+  | build
+  | dist
+)/
+'''
+
+[tool.isort]
+# Налаштування для сумісності з Black
+profile = "black"
+line_length = 79
+# Специфіка Odoo: імпорти з odoo мають бути на початку
+known_odoo = "odoo"
+sections = ["FUTURE", "STDLIB", "ODOO", "THIRDPARTY", "FIRSTPARTY", "LOCALFOLDER"]
+
+[flake8]
+# Налаштування для сумісності з Odoo та Black
+max-line-length = 79
+extend-ignore = ["E203", "W503"]
+exclude = '''
+    .git,
+    __pycache__,
+    .venv,
+    venv,
+    build,
+    dist
+   '''
+# Максимальна складність коду (Cyclomatic Complexity)
+max-complexity = 10
