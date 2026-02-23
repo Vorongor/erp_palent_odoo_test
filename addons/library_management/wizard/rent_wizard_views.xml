@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_library_rent_wizard_form" model="ir.ui.view">
+        <field name="name">library.rent.wizard.form</field>
+        <field name="model">library.rent.wizard</field>
+        <field name="arch" type="xml">
+            <form string="Видача книги">
+                <group>
+                    <field name="book_id" readonly="1" force_save="1"/>
+                    <field name="partner_id"/>
+                </group>
+                <footer>
+                    <button name="action_confirm_rent"
+                            string="Видати"
+                            type="object"
+                            class="btn-primary"/>
+                    <button string="Скасувати"
+                            class="btn-secondary"
+                            special="cancel"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+</odoo>

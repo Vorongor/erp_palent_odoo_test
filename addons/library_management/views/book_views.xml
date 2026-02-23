@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Створюю список існуючих книг -->
+    <record id="view_library_book_tree" model="ir.ui.view">
+        <field name="name">library.book.list</field>
+        <field name="model">library.book</field>
+        <field name="arch" type="xml">
+            <list>
+                <field name="name"/>
+                <field name="author"/>
+                <field name="published_date"/>
+                <field name="is_available" widget="boolean_toggle"/>
+            </list>
+        </field>
+    </record>
+
+    <!-- Створюю форму для додавання книги -->
+    <record id="view_library_book_form" model="ir.ui.view">
+        <field name="name">library.book.form</field>
+        <field name="model">library.book</field>
+        <field name="arch" type="xml">
+            <form>
+                <header>
+                    <button name="action_open_rent_wizard"
+                            string="Rent the book"
+                            type="object"
+                            class="oe_highlight"
+                            invisible="not is_available"/>
+                </header>
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="name"/>
+                            <field name="author"/>
+                        </group>
+                        <group>
+                            <field name="published_date"/>
+                            <field name="is_available"/>
+                        </group>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <!-- Додаю кнопку для створення нових книг -->
+    <record id="action_library_book" model="ir.actions.act_window">
+        <field name="name">Books</field>
+        <field name="res_model">library.book</field>
+        <field name="view_mode">list,form</field> </record>
+
+    <!-- Додаю посилання з розділом книги на панель -->
+    <menuitem id="menu_library_root" name="Library" sequence="10"/>
+    <menuitem id="menu_library_book" name="Books" parent="menu_library_root"
+              action="action_library_book" sequence="10"/>
+</odoo>
